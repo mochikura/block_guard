@@ -1,8 +1,5 @@
 # block_guard
 初ブロック崩しです
-【重要】block_guard.pdeまたはblock_guard-masterのファイル名を必ずどちらかに合わせてください
-
-初ブロック崩しです 【重要】block_guard.pdeまたはblock_guard-masterのファイル名を必ずどちらかに合わせてください
 
 ・ゲーム概要 上下左右から飛んでくるブロックを、自身が操作できるブロックを使用して対処するゲームです。 難易度はeasy/normal/hard/demo 難易度の概要はゲーム内の表示をご覧ください
 
