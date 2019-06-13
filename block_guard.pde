@@ -11,7 +11,27 @@ int grodiffi;//全体難易度
 int time=120;//時間
 int life=1;//ライフ
 
+String OS_NAME;//OS名格納
+
+boolean isWinwows = false;
+boolean isMac = false;
+boolean isLinux = false;
+
 void setup(){ //<>//
+  OS_NAME = System.getProperty("os.name");//OS名を文字列として取得
+  if(OS_NAME.indexOf("Windows") != -1){//文字列にWindowsが含まれているか部分判定
+    isWinwows = true;
+    //println(isWinwows);テストコード
+  }
+  if(OS_NAME.indexOf("Mac") != -1){//文字列にMacが含まれているか部分判定
+    isMac = true;
+    //println(isMac);テストコード
+  }
+  if(OS_NAME.indexOf("Linux") != -1){//文字列にLinuxが含まれているか部分判定
+    isLinux = true;
+    //println(isLinux);テストコード
+  }
+
   time=120;//初期値
   life=1;
   size(700,700);
@@ -32,11 +52,11 @@ void draw(){
       case 1://開始画面
       gamestart();
       break;
-      
+
       case 2://難易度選択
       gameset();
       break;
-      
+
       case 3://ゲーム本体
       gameplay();
       break;
@@ -45,26 +65,34 @@ void draw(){
 
 
 void gamestart(){
-  PFont font=createFont("MS Gothic",48,true);
+
+  if(isWinwows){//windows用フォント設定
+  PFont font=createFont("MS Gothic",45,true);
   textFont(font);//文字出力
+  }
+  if(isMac){//Mac用フォント設定
+  PFont font=createFont("Osaka",45,true);
+  textFont(font);//文字出力
+  }
+
   textSize(30);
   fill(0);
   text("normal block",300,70);//ブロックの種類提示
   text("opposite block",300,140);
   text("bad block",300,210);
-  
+
   rect(330,305,40,7);//前操作
   text("W",345,295);
-  
+
   rect(300,330,7,40);//左操作
   text("A",275,360);
-  
+
   rect(390,330,7,40);//右操作
   text("D",410,360);
-  
+
   rect(330,385,40,7);//後操作
   text("S",345,430);
-  
+
   fill(0,0,255);//青ブロック
   rect(200,30,75,50);
 
@@ -73,7 +101,7 @@ void gamestart(){
 
   fill(255,0,0);//赤ブロック
   rect(200,170,75,50);
-  
+
   textSize(50);
   fill(0);
   text("Press to the 'R' key",100,500);
@@ -104,34 +132,34 @@ void gameset(){//難易度選択
   text("Demo Mode",190,600);
   textSize(30);
   text("difficult:normal Time:60 Press 'X'",105,650);
-  
+
   fill(0);
   textSize(83);
   text("Serect difficult",20,150);
-  
+
   textSize(80);//難易度表示
   text("easy",45,270);
   text("hard",495,270);
   textSize(65);
   text("normal",260,270);
-  
+
   textSize(30);//キー表示
   text("press 'A'",65,490);
   text("press 'S'",290,490);
   text("press 'D'",515,490);
-  
+
   text("52%",160,310);//青比率
   text("56%",385,310);
   text("64%",610,310);
-  
+
   text("40%",160,360);//赤比率
   text("28%",385,360);
   text("12%",610,360);
-  
+
   text("8%",160,410);//黄比率
   text("16%",385,410);
   text("24%",610,410);
-  
+
   if(keyPressed==true && key=='a'){//easy
     grodiffi=1;
     time=120;
@@ -288,7 +316,7 @@ void gameplay(){
         }
       }
       Blocksred=nextBlocksred;
-      
+
       block_way.update();
       ArrayList<blockyellow> nextBlocksyellow=new ArrayList<blockyellow>();
       for(blockyellow blocksyellow : Blocksyellow){//黄色ブロック出現
